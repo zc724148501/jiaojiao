@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>management</title>
+</head>
+<body>
+<script type="text/javascript">
+    let t = 5;//设定跳转的时间
+    setInterval("refer()", 1000); //启动1秒定时
+    function refer() {
+        t--;
+        if (t == 0) {
+            location = "login"; //#设定跳转的链接地址
+            return;
+        }
+        document.getElementById('show').innerHTML = "" + t; // 显示倒计时
+    }
+</script>
+<div>
+    <span>恭喜你注册成功，</span><span id="show">5</span><span>秒后跳转至登录页面</span>
+</div>
+</body>
+</html>
