@@ -21,14 +21,14 @@
     function refer() {
         t--;
         if (t == 0) {
-            location = "login"; //#设定跳转的链接地址
+            location.href = "{{ url('homepage') }}"; //#设定跳转的链接地址
             return;
         }
         document.getElementById('show').innerHTML = "" + t; // 显示倒计时
     }
 </script>
 <div>
-    <span>恭喜你注册成功，</span><span id="show">5</span><span>秒后跳转至登录页面</span>
+    <span>恭喜你登录成功，</span><span id="show">5</span><span>秒后跳转至主页</span>
 </div>
 </body>
 </html>

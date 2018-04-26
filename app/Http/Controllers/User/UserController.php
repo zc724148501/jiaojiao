@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Model\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Cookie;
 
 class UserController extends Controller
 {
@@ -41,8 +43,22 @@ class UserController extends Controller
             return view('user/login', ['msg' => $msg, 'username' => $username]);
         }
         else {
-            User::create(['username' => $username,'password' => strtoupper(substr(md5($password),8,16)),'create_time' => time()]);
-            return view('location');
+            $user = User::where('username', '=', $username)->first();
+            if ($user->password != strtoupper(substr(md5($password), 8, 16))) {
+                $msg = '密码不正确';
+                return view('user/login', ['msg' => $msg, 'username' => $username]);
+            }
+            else {
+                $remember = $request->get('remember');
+                if (isset($remember)) {
+                    $cookie = Cookie::make('login',$username,43200);
+                }
+                else {
+                    $cookie = Cookie::forget('login');
+                }
+                $request->session()->put('username',$username);
+                return response()->view('locationLogin')->withCookie($cookie);
+            }
         }
     }
 
@@ -89,7 +105,7 @@ class UserController extends Controller
             return view('user/register', ['msg' => $msg]);
         }
         else {
-            User::create(['username' => $username,'password' => strtoupper(substr(md5($password),8,16)),'create_time' => time()]);
+            User::create(['username' => $username, 'password' => strtoupper(substr(md5($password), 8, 16)), 'create_time' => time()]);
             return view('location');
         }
     }

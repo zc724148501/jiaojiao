@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('homepage','HomepageController@index')->name('homepage.show');
+
 Route::get('captcha/{tmp}','CodeController@captcha');
 
 Route::group(['prefix' => 'user','namespace' => 'User'],function (){

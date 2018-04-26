@@ -108,19 +108,22 @@
                     <div class="cell">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
                         <input type="text" name="username" id="js-mobile_ipt" class="text" maxlength="11"
-                               placeholder="请输入账号" value="{{ $username or ''}}/>
+                               placeholder="请输入账号" value="{{ $username or ''}}"/>
                     </div>
                     <div class="cell">
                         <input type="password" name="password" id="js-mobile_pwd_ipt" class="text" placeholder="请输入密码"/>
                         <input type="text" name="" id="js-mobile_pwd_ipt_txt" class="text" maxlength="20"
                                style="display:none;"/>
                         <b class="icon-form ifm-view js-view-pwd" title="查看密码" style="display: none">查看密码</b></div>
-                    <div class="cell vcode">
+                    <div class="cell vcode" style="margin-bottom: 10px">
                         <input type="text" name="code" id="js-mobile_vcode_ipt" class="text" maxlength="6"
                                placeholder="请输入验证码"/>
                         {{--<a href="javascript:;" id="js-get_mobile_vcode" class="button btn-disabled">获取验证码</a>--}}
                         <img src="{{ URL('captcha/1') }}" id="captcha" alt="验证码" title="刷新验证码"
                              onclick="this.src='/captcha/'+Math.random()" style="cursor: pointer">
+                    </div>
+                    <div style="height: 30px;">
+                        <input type="checkbox" value="1" name="remember"><span style="font-size: 14px;margin-left: 10px;line-height: 20px">记住密码</span>
                     </div>
                     <div class="bottom">
                         <input type="submit" value="登录" id="login_btn" href="javascript:;" class="button btn-green"
