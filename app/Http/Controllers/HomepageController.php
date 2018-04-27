@@ -9,7 +9,6 @@ class HomepageController extends Controller
 {
     public function index(Request $request)
     {
-        echo $request->cookie('login');
-        echo $request->session()->get('username');
+        return view('admin/index');
     }
 }
