@@ -6,6 +6,10 @@ use Closure;
 
 class LoginMiddleware
 {
+    protected $except = [
+        '/user/*',
+    ];
+
     /**
      * Handle an incoming request.
      *

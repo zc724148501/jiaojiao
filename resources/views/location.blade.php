@@ -6,11 +6,12 @@
         span {
             font-size: 30px;
         }
+
         div {
-            height:600px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>

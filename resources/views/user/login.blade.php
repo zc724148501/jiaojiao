@@ -123,7 +123,8 @@
                              onclick="this.src='/captcha/'+Math.random()" style="cursor: pointer">
                     </div>
                     <div style="height: 30px;">
-                        <input type="checkbox" value="1" name="remember"><span style="font-size: 14px;margin-left: 10px;line-height: 20px">记住密码</span>
+                        <input type="checkbox" value="1" name="remember"><span
+                                style="font-size: 14px;margin-left: 10px;line-height: 20px">记住密码</span>
                     </div>
                     <div class="bottom">
                         <input type="submit" value="登录" id="login_btn" href="javascript:;" class="button btn-green"

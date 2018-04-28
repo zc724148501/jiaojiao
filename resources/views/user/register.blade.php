@@ -116,7 +116,8 @@
                                style="display:none;"/>
                         <b class="icon-form ifm-view js-view-pwd" title="查看密码" style="display: none">查看密码</b></div>
                     <div class="cell">
-                        <input type="password" name="re_password" id="js-mobile_pwd_ipt" class="text" placeholder="请再次输入密码"/>
+                        <input type="password" name="re_password" id="js-mobile_pwd_ipt" class="text"
+                               placeholder="请再次输入密码"/>
                     </div>
                     <div class="cell vcode">
                         <input type="text" name="code" id="js-mobile_vcode_ipt" class="text" maxlength="6"

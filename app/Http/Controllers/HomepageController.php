@@ -9,6 +9,7 @@ class HomepageController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin/index');
+        $username = $request->session()->get('username');
+        return view('admin/index',['username' => $username]);
     }
 }

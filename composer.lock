@@ -280,12 +280,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/Captcha.git",
-                "reference": "4bf82ff3cfcad3e0c67c001f30dfe750afdbbda4"
+                "reference": "a96d8dffc80d6213958bd19fbdef1555e8b63ca3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/4bf82ff3cfcad3e0c67c001f30dfe750afdbbda4",
-                "reference": "4bf82ff3cfcad3e0c67c001f30dfe750afdbbda4",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/a96d8dffc80d6213958bd19fbdef1555e8b63ca3",
+                "reference": "a96d8dffc80d6213958bd19fbdef1555e8b63ca3",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +325,7 @@
                 "captcha",
                 "spam"
             ],
-            "time": "2018-01-24T09:04:01+00:00"
+            "time": "2018-04-24T09:20:08+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -814,16 +814,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.26.4",
+            "version": "1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "e3d9014279133a3cccc01f6a691322a2d5a6a87b"
+                "reference": "ef81c39b67200dcd7401c24363dcac05ac3a4fe9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e3d9014279133a3cccc01f6a691322a2d5a6a87b",
-                "reference": "e3d9014279133a3cccc01f6a691322a2d5a6a87b",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ef81c39b67200dcd7401c24363dcac05ac3a4fe9",
+                "reference": "ef81c39b67200dcd7401c24363dcac05ac3a4fe9",
                 "shasum": ""
             },
             "require": {
@@ -858,7 +858,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-04-17T15:35:42+00:00"
+            "time": "2018-04-23T09:02:57+00:00"
         },
         {
             "name": "nikic/php-parser",

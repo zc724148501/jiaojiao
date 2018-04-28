@@ -16,6 +16,13 @@ class UserController extends Controller
         return view('user/login', ['msg' => $msg]);
     }
 
+    public function logout(Request $request)
+    {
+        $request->session()->forget('username');
+        $cookie = Cookie::forget('login');
+        return response()->view('user/login')->withCookie($cookie);
+    }
+
     public function register()
     {
         return view('user/register');
