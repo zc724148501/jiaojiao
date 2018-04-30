@@ -101,7 +101,7 @@
     <div class="container">
         <div class="register-box">
             <div class="reg-slogan">用户注册</div>
-            <div class="reg-form" id="js-form-mobile">
+            <div class="reg-form" id="js-form-mobile"  style="margin-top: -40px;">
                 <br>
                 <br>
                 <form method="post" action="check_register">
@@ -129,6 +129,10 @@
                     <div class="bottom">
                         <input type="submit" value="注册" id="login_btn" href="javascript:;" class="button btn-green"
                                style="width: 327px"/>
+                    </div>
+                    <br>
+                    <div class="bottom">
+                        <a id="return_btn" href="login" class="button btn-green">返回</a>
                     </div>
                     <div style="color: #c40000;font-size: 22px;margin-top: 15px;text-align: center">{{ $msg or '' }}</div>
                 </form>

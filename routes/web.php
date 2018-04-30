@@ -13,7 +13,6 @@
 Route::group(['middleware' => 'login'],function (){
     Route::group(['prefix' => 'user','namespace' => 'User'],function (){
         Route::get('login','UserController@login');
-        Route::get('user/logout','UserController@logout');
     });
 
     Route::get('homepage','HomepageController@index')->name('homepage.show');
@@ -22,7 +21,8 @@ Route::group(['middleware' => 'login'],function (){
 Route::group(['prefix' => 'user','namespace' => 'User'],function (){
     Route::post('check_login','UserController@checkLogin');
     Route::post('check_register','UserController@checkRegister');
-    Route::get('user/register','UserController@register');
+    Route::get('register','UserController@register');
+    Route::get('logout','UserController@logout');
 });
 
 Route::get('/', function () {
