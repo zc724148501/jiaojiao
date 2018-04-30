@@ -15,7 +15,14 @@ Route::group(['middleware' => 'login'],function (){
         Route::get('login','UserController@login');
     });
 
-    Route::get('homepage','HomepageController@index')->name('homepage.show');
+    Route::group(['prefix' => 'user','namespace' => 'User'],function (){
+        Route::get('homepage','HomepageController@index');
+        Route::get('appointment','AppointmentController@index');
+        Route::get('query','QueryController@index');
+        Route::get('personal','PersonalController@index');
+        Route::get('setting','SettingController@index');
+        Route::get('logout','LogoutController@index');
+    });
 });
 
 Route::group(['prefix' => 'user','namespace' => 'User'],function (){

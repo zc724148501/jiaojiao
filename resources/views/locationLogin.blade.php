@@ -22,7 +22,7 @@
     function refer() {
         t--;
         if (t == 0) {
-            location.href = "{{ url('homepage') }}"; //#设定跳转的链接地址
+            location.href = "{{ url('user/homepage') }}"; //#设定跳转的链接地址
             return;
         }
         document.getElementById('show').innerHTML = "" + t; // 显示倒计时

@@ -21,7 +21,7 @@
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="user/logout"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
+                <li><a href="{{ url('user/logout') }}"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->

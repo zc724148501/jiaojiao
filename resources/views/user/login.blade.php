@@ -104,7 +104,7 @@
             <div class="reg-form" id="js-form-mobile">
                 <br>
                 <br>
-                <form method="post" action="check_login">
+                <form method="post" action="{{ url('user/check_login') }}">
                     <div class="cell">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
                         <input type="text" name="username" id="js-mobile_ipt" class="text" maxlength="11"
@@ -132,7 +132,7 @@
                     </div>
                     <br>
                     <div class="bottom">
-                        <a id="register_btn" href="register" class="button btn-green">注册</a>
+                        <a id="register_btn" href="{{ url('user/register') }}" class="button btn-green">注册</a>
                     </div>
                     <div style="color: #c40000;font-size: 22px;margin-top: 15px;text-align: center">{{ $msg  or '' }}</div>
                 </form>

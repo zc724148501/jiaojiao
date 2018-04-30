@@ -3,55 +3,23 @@
         <ul class="nav" id="main-menu">
 
             <li>
-                <a class="active-menu" href="index.blade.php"><i class="fa fa-dashboard"></i> Dashboard</a>
+                <a class="active-menu" href="{{ url('user/homepage') }}"><i class="fa fa-dashboard"></i>首页</a>
             </li>
             <li>
-                <a href="ui-elements.blade.php"><i class="fa fa-desktop"></i> UI Elements</a>
+                <a href="{{ url('user/appointment') }}"><i class="fa fa-desktop"></i>预约维修</a>
             </li>
             <li>
-                <a href="chart.blade.php"><i class="fa fa-bar-chart-o"></i> Charts</a>
+                <a href="{{ url('user/query') }}"><i class="fa fa-bar-chart-o"></i>订单查询</a>
             </li>
             <li>
-                <a href="tab-panel.blade.php"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
-            </li>
-
-            <li>
-                <a href="table.blade.php"><i class="fa fa-table"></i> Responsive Tables</a>
-            </li>
-            <li>
-                <a href="form.blade.php"><i class="fa fa-edit"></i> Forms </a>
+                <a href="{{ url('user/personal') }}"><i class="fa fa-qrcode"></i>个人中心</a>
             </li>
 
-
             <li>
-                <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">Second Level Link</a>
-                    </li>
-                    <li>
-                        <a href="#">Second Level Link</a>
-                    </li>
-                    <li>
-                        <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">Third Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Link</a>
-                            </li>
-
-                        </ul>
-
-                    </li>
-                </ul>
+                <a href="{{ url('user/setting') }}"><i class="fa fa-table"></i>个人设置</a>
             </li>
             <li>
-                <a href="empty.blade.php"><i class="fa fa-fw fa-file"></i> Empty Page</a>
+                <a href="{{ url('user/logout') }}"><i class="fa fa-edit"></i>退出登录</a>
             </li>
         </ul>
 
