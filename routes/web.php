@@ -15,6 +15,11 @@ Route::group(['middleware' => 'login'],function (){
         Route::get('login','UserController@login');
     });
 
+
+    Route::get('/', function () {
+        return view('user/login');
+    });
+
     Route::group(['prefix' => 'user','namespace' => 'User'],function (){
         Route::get('homepage','HomepageController@index');
         Route::get('appointment','AppointmentController@index');
@@ -30,10 +35,6 @@ Route::group(['prefix' => 'user','namespace' => 'User'],function (){
     Route::post('check_register','UserController@checkRegister');
     Route::get('register','UserController@register');
     Route::get('logout','UserController@logout');
-});
-
-Route::get('/', function () {
-    return view('user/login');
 });
 
 

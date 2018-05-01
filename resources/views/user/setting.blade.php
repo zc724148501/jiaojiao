@@ -94,8 +94,8 @@
                                         <div id="box">
                                             <div>
                                                 <div class="form-group input-group">
-                                                    <input type="text" class="form-control">
-                                                    <span id="span1" class="input-group-addon" style="cursor: pointer"
+                                                    <input id="input1" type="text" class="form-control">
+                                                    <span class="input-group-addon" style="cursor: pointer"
                                                           onclick="AddOrDelete(this)">+</span>
                                                 </div>
                                                 <div class="form-group has-success">
@@ -103,6 +103,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-default" style="width: 100px;">提交</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -152,18 +153,17 @@
             firstDiv.setAttribute('class', 'form-group input-group');
             div.appendChild(firstDiv);
             var input = document.createElement('input');
-            if (div.previousElementSibling.children[0].children[1]) {
-                input.setAttribute('id', 'span'+(div.previousElementSibling.children[0].children[1].getAttribute('id').substring(4).+1));
+            if (div.previousElementSibling.children[0].children[0]) {
+                input.setAttribute('id', 'input'+(parseInt(div.previousElementSibling.children[0].children[0].getAttribute('id').substring(5))+1));
             }
             input.setAttribute('class', 'form-control');
-            input.style.cursor = 'pointer';
             firstDiv.appendChild(input);
             var span = document.createElement('span');
             span.setAttribute('type', 'text');
             span.setAttribute('class', 'input-group-addon');
             span.style.cursor = 'pointer';
             span.setAttribute('onclick', 'AddOrDelete(this)');
-            span.innerText = '+';
+            span.innerText = '-';
             firstDiv.appendChild(span);
             var lastDiv = document.createElement('div');
             lastDiv.setAttribute('class', 'form-group has-success');
@@ -172,14 +172,10 @@
             label.setAttribute('class', 'control-label');
             label.innerText = 'Input with success';
             lastDiv.appendChild(label);
-            btn.innerText = '-';
         }
         else {
             var parentDiv = btn.parentNode.parentNode;
             var previous = parentDiv.previousElementSibling;
-            if (previous) {
-                previous.children[0].children[1].innerText = '+';
-            }
             box.removeChild(parentDiv);
         }
     }
