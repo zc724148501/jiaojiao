@@ -84,8 +84,7 @@
                                             <textarea class="form-control" rows="3" style="margin-top: 10px"
                                                       placeholder="详细地址"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
+                                        <button type="submit" class="btn btn-default" style="width: 100px;">提交</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -95,13 +94,12 @@
                                         <div id="box">
                                             <div>
                                                 <div class="form-group input-group">
-                                                    <input type="text" class="form-control" placeholder="请输入产品编号">
+                                                    <input type="text" class="form-control">
                                                     <span id="span1" class="input-group-addon" style="cursor: pointer"
                                                           onclick="AddOrDelete(this)">+</span>
                                                 </div>
                                                 <div class="form-group has-success">
-                                                    <label class="control-label" for="inputSuccess">Input with
-                                                        success</label>
+                                                    <label class="control-label">Input with success</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,11 +145,42 @@
     var box = document.getElementById('box');
 
     function AddOrDelete(btn) {
-        if (btn.innerText === '+'){
-            let div = document.createElement('div');
-            div.innerText = '123';
+        if (btn.innerText === '+') {
+            var div = document.createElement('div');
             box.appendChild(div);
+            var firstDiv = document.createElement('div');
+            firstDiv.setAttribute('class', 'form-group input-group');
+            div.appendChild(firstDiv);
+            var input = document.createElement('input');
+            if (div.previousElementSibling.children[0].children[1]) {
+                input.setAttribute('id', 'span'+(div.previousElementSibling.children[0].children[1].getAttribute('id').substring(4).+1));
+            }
+            input.setAttribute('class', 'form-control');
+            input.style.cursor = 'pointer';
+            firstDiv.appendChild(input);
+            var span = document.createElement('span');
+            span.setAttribute('type', 'text');
+            span.setAttribute('class', 'input-group-addon');
+            span.style.cursor = 'pointer';
+            span.setAttribute('onclick', 'AddOrDelete(this)');
+            span.innerText = '+';
+            firstDiv.appendChild(span);
+            var lastDiv = document.createElement('div');
+            lastDiv.setAttribute('class', 'form-group has-success');
+            div.appendChild(lastDiv);
+            var label = document.createElement('label');
+            label.setAttribute('class', 'control-label');
+            label.innerText = 'Input with success';
+            lastDiv.appendChild(label);
             btn.innerText = '-';
+        }
+        else {
+            var parentDiv = btn.parentNode.parentNode;
+            var previous = parentDiv.previousElementSibling;
+            if (previous) {
+                previous.children[0].children[1].innerText = '+';
+            }
+            box.removeChild(parentDiv);
         }
     }
 </script>
