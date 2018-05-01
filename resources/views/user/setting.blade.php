@@ -74,12 +74,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label>电话</label>
-                                            <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="form-control" placeholder="请输入您的电话">
+                                            <input onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                                                   class="form-control" placeholder="请输入您的电话">
                                         </div>
                                         <div class="form-group">
                                             <label style="display: block;">地址</label>
                                             @include('common.city')
-                                            <textarea class="form-control" rows="3" style="margin-top: 10px" placeholder="详细地址"></textarea>
+                                            <textarea class="form-control" rows="3" style="margin-top: 10px"
+                                                      placeholder="详细地址"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-default">Submit Button</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
@@ -89,12 +92,18 @@
                                 <div class="col-lg-6">
                                     <h4>添加您购买的产品</h4>
                                     <form role="form">
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-addon" style="cursor: pointer" onclick="AddOrDelete()">+</span>
-                                        </div>
-                                        <div class="form-group has-success">
-                                            <label class="control-label" for="inputSuccess">Input with success</label>
+                                        <div id="box">
+                                            <div>
+                                                <div class="form-group input-group">
+                                                    <input type="text" class="form-control" placeholder="请输入产品编号">
+                                                    <span id="span1" class="input-group-addon" style="cursor: pointer"
+                                                          onclick="AddOrDelete(this)">+</span>
+                                                </div>
+                                                <div class="form-group has-success">
+                                                    <label class="control-label" for="inputSuccess">Input with
+                                                        success</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -135,11 +144,16 @@
 <script src="/assets/js/custom-scripts.js"></script>
 
 <script>
-    $(document).ready(function(){
-        $("span").click(function(){
-            $("span").html("-");
-        });
-    });
+    var box = document.getElementById('box');
+
+    function AddOrDelete(btn) {
+        if (btn.innerText === '+'){
+            let div = document.createElement('div');
+            div.innerText = '123';
+            box.appendChild(div);
+            btn.innerText = '-';
+        }
+    }
 </script>
 
 </body>
