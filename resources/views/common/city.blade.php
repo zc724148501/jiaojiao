@@ -1,5 +1,6 @@
-<select id="province" runat="server" onchange="selectprovince(this);" class="form-control" style="width: 373px;display: inline-block"></select>
-<select id="city" runat="server" class="form-control" style="width: 373px;display: inline-block"></select>
+<select name="province" id="province" runat="server" onchange="selectprovince(this);" class="form-control"
+        style="width: 373px;display: inline-block"></select>
+<select name="city" id="city" runat="server" class="form-control" style="width: 373px;display: inline-block"></select>
 
 <script type="text/javascript">
     var list1 = new Array;
@@ -45,7 +46,7 @@
         "西青区", "津南区", "武清区", "蓟县", "宁河县", "静海县", "其他");
     list2[list2.length] = new Array("石家庄市", "张家口市", "承德市", "秦皇岛市", "唐山市", "廊坊市", "衡水市",
         "沧州市", "邢台市", "邯郸市", "保定市", "其他");
-    list2[list2.length] = new Array("太原市", "朔州市", "大同市", "长治市", "晋城市", "忻州市", "晋中市", "临汾市",
+    list2[list2.length] = new Array("太原市", "朔州市", "阳泉市", "大同市", "长治市", "晋城市", "忻州市", "晋中市", "临汾市",
         "吕梁市", "运城市", "其他");
     list2[list2.length] = new Array("呼和浩特市", "包头市", "赤峰市", "呼伦贝尔市", "鄂尔多斯市", "乌兰察布市",
         "巴彦淖尔市", "兴安盟", "阿拉善盟", "锡林郭勒盟", "其他");
@@ -110,16 +111,23 @@
     var ddlCity = document.getElementById("city");
     for (var i = 0; i < list1.length; i++) {
         var option = document.createElement("option");
+        var firstprovince;
         option.appendChild(document.createTextNode(list1[i]));
         option.value = list1[i];
         ddlProvince.appendChild(option);
+        if (option.value === '{{ $province }}'){
+            option.setAttribute('selected','selected');
+        }
+        firstprovince = list2[i];
         //city initialize
-        var firstprovince = list2[0];
         for (var j = 0; j < firstprovince.length; j++) {
             var optioncity = document.createElement("option");
             optioncity.appendChild(document.createTextNode(firstprovince[j]));
             optioncity.value = firstprovince[j];
             ddlCity.appendChild(optioncity);
+            if (optioncity.value === '{{ $city }}'){
+                optioncity.setAttribute('selected','selected');
+            }
         }
     }
 

@@ -40,49 +40,52 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="{{ url('user/info') }}" method="post">
                                         <div class="form-group">
                                             <label>姓名</label>
-                                            <input class="form-control" placeholder="请输入您的姓名">
+                                            <input name="name" class="form-control" placeholder="请输入您的姓名"
+                                                   value="{{ $name or null }}">
                                         </div>
                                         <div class="form-group">
                                             <label>性别</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1"
-                                                           value="option1" checked="">男
+                                                    <input type="radio" name="sex" id="optionsRadios1"
+                                                           value="1" @if($sex == 1) checked="true" @endif>男
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2"
-                                                           value="option2">女
+                                                    <input type="radio" name="sex" id="optionsRadios2"
+                                                           value="0" @if($sex == 0) checked="true" @endif>女
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>年龄</label>
-                                            <select class="form-control">
+                                            <select name="age" class="form-control">
                                                 @for ($i = 1; $i < 100; $i++)
-                                                    @if($i == 20)
-                                                        <option value="{{ $i }}" selected="selected">{{ $i }}</option>
+                                                    @if($i == $age)
+                                                        <option value="{{ $i }}" selected="selected">{{ $i }}岁</option>
                                                     @else
-                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                        <option value="{{ $i }}">{{ $i }}岁</option>
                                                     @endif
                                                 @endfor
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group @if($msg == '错误的手机号格式') has-error @endif">
                                             <label>电话</label>
-                                            <input onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                            <input name="tel" onkeyup="this.value=this.value.replace(/\D/g,'')"
                                                    onafterpaste="this.value=this.value.replace(/\D/g,'')"
-                                                   class="form-control" placeholder="请输入您的电话">
+                                                   class="form-control" placeholder="请输入您的电话"
+                                                   value="{{ $tel or null }}">
+                                            <label class="control-label" for="inputError" style="margin-top: 10px">{{ $msg or null }}</label>
                                         </div>
                                         <div class="form-group">
                                             <label style="display: block;">地址</label>
                                             @include('common.city')
-                                            <textarea class="form-control" rows="3" style="margin-top: 10px"
-                                                      placeholder="详细地址"></textarea>
+                                            <textarea name="address" class="form-control" rows="3" style="margin-top: 10px"
+                                                      placeholder="详细地址">{{ $address or null }}</textarea>
                                         </div>
                                         <button type="submit" class="btn btn-default" style="width: 100px;">提交</button>
                                     </form>
@@ -154,7 +157,7 @@
             div.appendChild(firstDiv);
             var input = document.createElement('input');
             if (div.previousElementSibling.children[0].children[0]) {
-                input.setAttribute('id', 'input'+(parseInt(div.previousElementSibling.children[0].children[0].getAttribute('id').substring(5))+1));
+                input.setAttribute('id', 'input' + (parseInt(div.previousElementSibling.children[0].children[0].getAttribute('id').substring(5)) + 1));
             }
             input.setAttribute('class', 'form-control');
             firstDiv.appendChild(input);
@@ -175,7 +178,6 @@
         }
         else {
             var parentDiv = btn.parentNode.parentNode;
-            var previous = parentDiv.previousElementSibling;
             box.removeChild(parentDiv);
         }
     }

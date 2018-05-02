@@ -10,5 +10,5 @@ class User extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['username','password','create_time'];
+    protected $fillable = ['username', 'password', 'name', 'sex', 'age', 'tel', 'province', 'city', 'address', 'create_time'];
 }

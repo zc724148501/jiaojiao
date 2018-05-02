@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 
-class QueryController extends Controller
+class QueryController extends BaseController
 {
     public function index(Request $request)
     {

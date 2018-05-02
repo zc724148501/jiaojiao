@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 
-class LogoutController extends Controller
+class LogoutController extends BaseController
 {
     public function index(Request $request)
     {

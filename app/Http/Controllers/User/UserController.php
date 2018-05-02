@@ -5,10 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use Cookie;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     public function login(Request $request)
     {
