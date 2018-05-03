@@ -10,5 +10,5 @@ class Household extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['brand', 'type', 'model', 'number', 'uid'];
+    protected $fillable = ['brand', 'type', 'model', 'number', 'uid', 'deadline'];
 }

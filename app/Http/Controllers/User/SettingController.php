@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Model\Brand;
+use App\Model\Household;
+use App\Model\Models;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Model\User;
@@ -22,6 +25,7 @@ class SettingController extends BaseController
             'tel'      => $user->tel,
             'province' => $user->province,
             'city'     => $user->city,
+            'address'     => $user->address,
         ]);
     }
 

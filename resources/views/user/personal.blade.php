@@ -73,7 +73,6 @@
                                         <div id="box">
                                             <div class="form-control"></div>
                                         </div>
-                                        <button type="submit" class="btn btn-default" style="width: 100px;margin-top: 10px">提交</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
