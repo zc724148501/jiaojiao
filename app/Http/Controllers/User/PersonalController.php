@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Model\Brand;
 use App\Model\Household;
-use App\Model\Model;
+use App\Model\Models;
 use App\Model\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
@@ -16,27 +16,24 @@ class PersonalController extends BaseController
     {
         $username = $request->session()->get('username');
         $user = User::where('username', '=', $username)->first();
-        $household = Household::where('uid', '=', $user['id']);
+        $household = Household::where('userid', '=', $user['id'])->get();
         $data = array();
         foreach ($household as $value) {
-            $brand = Brand::where('number', '=', $household['brand']);
-            $type = Type::where('number', '=', $household['type']);
-            $model = Model::where('number', '=', $household['model']);
-            $data[] = array(
-                'brand' => $brand,
-                'type' => $type,
-                'model' => $model,
-            );
+            $brand = Brand::where('number', '=', $value['brand'])->first();
+            $type = Type::where('number', '=', $value['type'])->first();
+            $model = Models::where('number', '=', $value['model'])->first();
+            $data[] = $brand['brand'] . '-' . $type['type'] . '-' . $model['model'];
         }
         return view('user/personal', [
             'username' => $username,
-            'name'     => $user->name,
-            'sex'      => $user->sex,
-            'age'      => $user->age,
-            'tel'      => $user->tel,
+            'name' => $user->name,
+            'sex' => $user->sex,
+            'age' => $user->age,
+            'tel' => $user->tel,
             'province' => $user->province,
-            'city'     => $user->city,
-            'address'  => $user->address,
+            'city' => $user->city,
+            'address' => $user->address,
+            'household' => $data
         ]);
     }
 }

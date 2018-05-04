@@ -71,7 +71,9 @@
                                     <h4>您购买的产品</h4>
                                     <form role="form">
                                         <div id="box">
-                                            <div class="form-control"></div>
+                                            @foreach($household as $value)
+                                                <div class="form-control" style="margin-top: 20px">{{ $value }}</div>
+                                            @endforeach
                                         </div>
                                     </form>
                                 </div>

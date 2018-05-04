@@ -13,7 +13,8 @@
 Route::group(['middleware' => 'login'],function (){
     Route::group(['prefix' => 'user','namespace' => 'User'],function (){
         Route::get('login','UserController@login');
-        Route::post('info','SettingController@setInformation');
+        Route::post('setInfo','SettingController@setInformation');
+        Route::post('setHousehold','SettingController@setHousehold');
     });
 
 

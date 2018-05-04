@@ -22,8 +22,11 @@ class LoginMiddleware
         if (!empty($request->cookie('login')) && empty($request->session()->get('username'))){
             $request->session()->put('username',$request->cookie('login'));
         }
-        if (empty($request->session()->get('username')) && $request->path() != 'user/login'){
+        elseif (empty($request->session()->get('username')) && $request->path() != 'user/login'){
             return redirect('user/login');
+        }
+        elseif ($request->path() == 'user/login' || $request->path() == 'user/register' || $request->path() == '/'){
+            return redirect('user/homepage');
         }
         return $next($request);
     }

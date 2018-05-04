@@ -40,7 +40,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="{{ url('user/info') }}" method="post">
+                                    <form role="form" action="{{ url('user/setInfo') }}" method="post">
                                         <div class="form-group">
                                             <label>姓名</label>
                                             <input name="name" class="form-control" placeholder="请输入您的姓名"
@@ -79,34 +79,67 @@
                                                    onafterpaste="this.value=this.value.replace(/\D/g,'')"
                                                    class="form-control" placeholder="请输入您的电话"
                                                    value="{{ $tel or null }}">
-                                            <label class="control-label" for="inputError" style="margin-top: 10px">{{ $msg or null }}</label>
+                                            <label class="control-label" for="inputError"
+                                                   style="margin-top: 10px">{{ $msg or null }}</label>
                                         </div>
                                         <div class="form-group">
                                             <label style="display: block;">地址</label>
                                             @include('common.city')
-                                            <textarea name="address" class="form-control" rows="3" style="margin-top: 10px"
+                                            <textarea name="address" class="form-control" rows="3"
+                                                      style="margin-top: 10px"
                                                       placeholder="详细地址">{{ $address or null }}</textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-default" style="width: 100px;">提交</button>
+                                        <button type="submit" class="btn btn-default" style="width: 100px;">保存</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h4>添加您购买的产品</h4>
-                                    <form role="form">
+                                    <form role="form" action="{{ url('user/setHousehold') }}" method="post">
                                         <div id="box">
-                                            <div>
-                                                <div class="form-group input-group">
-                                                    <input id="input1" type="text" class="form-control">
-                                                    <span class="input-group-addon" style="cursor: pointer"
-                                                          onclick="AddOrDelete(this)">+</span>
+                                            @if(empty($household))
+                                                <div>
+                                                    <div class="form-group input-group">
+                                                        <input id="input1" name="input1" type="text"
+                                                               class="form-control">
+                                                        <span class="input-group-addon" style="cursor: pointer"
+                                                              onclick="AddOrDelete(this)">-</span>
+                                                    </div>
+                                                    <div class="form-group has-success">
+                                                        <label class="control-label"></label>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group has-success">
-                                                    <label class="control-label">Input with success</label>
-                                                </div>
-                                            </div>
+                                            @else
+                                                @foreach($household as $value)
+                                                    <div>
+                                                        <div class="form-group input-group">
+                                                            <input id="input1" name="input1" type="text"
+                                                                   class="form-control" value="{{ $value['input'] }}">
+                                                            <span class="input-group-addon" style="cursor: pointer"
+                                                                  onclick="AddOrDelete(this)">-</span>
+                                                        </div>
+                                                        <div class="
+                                                            @if($value['msg'] != 'none' && $value['msg'] != 'exist')
+                                                                form-group has-success
+                                                            @else
+                                                                form-group has-error
+                                                            @endif
+                                                                ">
+                                                            <label class="control-label">
+                                                                @if($value['msg'] == 'none')
+                                                                    商品编号不存在
+                                                                @elseif($value['msg'] == 'exist')
+                                                                    商品已被绑定
+                                                                @else
+                                                                    绑定成功，{{ $value['msg'] }}
+                                                                @endif
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
-                                        <button type="submit" class="btn btn-default" style="width: 100px;">提交</button>
+                                        <button type="submit" class="btn btn-default" style="width: 100px;">添加</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -147,6 +180,9 @@
 
 <script>
     var box = document.getElementById('box');
+    var firstDiv = box.firstElementChild;
+    var firstSpan = firstDiv.children[0].children[1];
+    firstSpan.innerHTML = '+';
 
     function AddOrDelete(btn) {
         if (btn.innerText === '+') {
@@ -158,6 +194,7 @@
             var input = document.createElement('input');
             if (div.previousElementSibling.children[0].children[0]) {
                 input.setAttribute('id', 'input' + (parseInt(div.previousElementSibling.children[0].children[0].getAttribute('id').substring(5)) + 1));
+                input.setAttribute('name', 'input' + (parseInt(div.previousElementSibling.children[0].children[0].getAttribute('id').substring(5)) + 1));
             }
             input.setAttribute('class', 'form-control');
             firstDiv.appendChild(input);
@@ -173,7 +210,7 @@
             div.appendChild(lastDiv);
             var label = document.createElement('label');
             label.setAttribute('class', 'control-label');
-            label.innerText = 'Input with success';
+            label.innerText = '';
             lastDiv.appendChild(label);
         }
         else {
