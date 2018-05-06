@@ -36,7 +36,8 @@ class PersonalController extends BaseController
             'city' => $user->city,
             'address' => $user->address,
             'household' => $data,
-            'deadline' => $deadline
+            'deadline' => $deadline,
+            'active' => 4
         ]);
     }
 }
