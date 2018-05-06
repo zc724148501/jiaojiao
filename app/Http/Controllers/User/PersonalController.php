@@ -18,11 +18,13 @@ class PersonalController extends BaseController
         $user = User::where('username', '=', $username)->first();
         $household = Household::where('userid', '=', $user['id'])->get();
         $data = array();
+        $deadline = array();
         foreach ($household as $value) {
             $brand = Brand::where('number', '=', $value['brand'])->first();
             $type = Type::where('number', '=', $value['type'])->first();
             $model = Models::where('number', '=', $value['model'])->first();
             $data[] = $brand['brand'] . '-' . $type['type'] . '-' . $model['model'];
+            $deadline[] = (time() - $value['deadline']) ? 1 : 0;
         }
         return view('user/personal', [
             'username' => $username,
@@ -33,7 +35,8 @@ class PersonalController extends BaseController
             'province' => $user->province,
             'city' => $user->city,
             'address' => $user->address,
-            'household' => $data
+            'household' => $data,
+            'deadline' => $deadline
         ]);
     }
 }

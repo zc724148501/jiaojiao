@@ -25,7 +25,7 @@ class LoginMiddleware
         elseif (empty($request->session()->get('username')) && $request->path() != 'user/login'){
             return redirect('user/login');
         }
-        elseif ($request->path() == 'user/login' || $request->path() == 'user/register' || $request->path() == '/'){
+        if ($request->path() == 'user/login' || $request->path() == 'user/register' || $request->path() == '/'){
             return redirect('user/homepage');
         }
         return $next($request);

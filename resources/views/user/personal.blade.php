@@ -71,8 +71,22 @@
                                     <h4>您购买的产品</h4>
                                     <form role="form">
                                         <div id="box">
-                                            @foreach($household as $value)
-                                                <div class="form-control" style="margin-top: 20px">{{ $value }}</div>
+                                            @foreach($household as $key => $value)
+                                                <div class="form-group
+                                                        @if($deadline[$key])
+                                                            has-error
+                                                        @else
+                                                            has-success
+                                                        @endif
+                                                        ">
+                                                    <div id="inputError" class="form-control"
+                                                         style="margin-top: 20px">{{ $value }}</div>
+                                                    <label class="control-label" style="margin-top: 10px">
+                                                        @if($deadline[$key])
+                                                            商品已经超过保修期
+                                                        @endif
+                                                    </label>
+                                                </div>
                                             @endforeach
                                         </div>
                                     </form>
