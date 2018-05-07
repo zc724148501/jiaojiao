@@ -16,53 +16,38 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
     <!-- TABLE STYLES-->
     <link href="/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <script src="/assets/js/bootstrap.min.js"></script>
     <style type="text/css">
         label {
             font-size: 22px;
-        }
-
-        input[type='date'] {
-            padding: 1px;
-        }
-
-        /*控制编辑区域的*/
-        input[type='date'] {
-            background-color: #fff;
-        }
-
-        /*控制年月日这个区域的*/
-        input[type='date'] {
-            color: #333;
-            padding: 0 .5em;
-        }
-
-        /*这是控制年月日之间的斜线或短横线的*/
-        input[type='date'] {
-            color: #333;
-        }
-
-        /*控制年文字, 如2013四个字母占据的那片地方*/
-        input[type='date'] {
-            color: #333;
-        }
-
-        /*控制月份*/
-        input[type='date'] {
-            color: #333;
-        }
-
-        /*控制具体日子*/
-        input[type='date'] { /*这是控制下拉小箭头的*/
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            box-shadow: inset 0 1px #fff, 0 1px #eee;
-            color: #666;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
         #panel {
             display: none;
         }
     </style>
+    <script>
+
+        var theme = "ios";
+        var mode = "scroller";
+        var display = "bottom";
+        var lang = "zh";
+
+        // Date & Time demo initialization
+        $('#demo_datetime').mobiscroll().datetime({
+            theme: theme,
+            mode: mode,
+            display: display,
+            lang: lang,
+            dateFormat: "yyyy-mm-dd",
+            minDate: new Date(2000, 3, 10, 9, 22),
+            maxDate: new Date(2030, 7, 30, 15, 44),
+            stepMinute: 1
+        });
+    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -87,13 +72,23 @@
                         <div class="panel-body">
                             <div class="row" style="margin: 0 auto;width: 1200px;">
                                 <div class="col-lg-6" style="margin-left: 270px">
+                                    <div class="alert alert-warning"
+                                         style="display: {{ (!$complete) ? 'block' : 'none' }};">
+                                        <a href="#" class="close" data-dismiss="alert">
+                                            &times;
+                                        </a>
+                                        <strong>警告！</strong>
+                                        <span>您的个人资料未完善，请前往完善。</span>
+                                        <a href="{{ url('user/setting') }}">个人设置</a>
+                                    </div>
                                     <form role="form" action="{{ url('user/setInfo') }}" method="post">
                                         <div class="form-group">
                                             <label>保修家电</label>
                                             <label style="font-size: 16px">（保修期已过的家电不参与预约维修）</label>
                                             <select name="household" class="form-control">
-                                                <option value="" selected="selected">岁</option>
-                                                <option value="">岁</option>
+                                                @foreach($household as $key => $value)
+                                                    <option value="">{{ $value }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <label>故障类型</label>
@@ -102,20 +97,10 @@
                                             <option value="">岁</option>
                                         </select>
                                         <div class="form-group">
-                                            <label style="display: block;">上门时间</label>
-                                            <input type="date" name="date_start"
-                                                   style="width: 268px;display: inline-block" class="form-control"
-                                                   min="2015-09-16" max="2015-09-26"/>
-                                            <input type="time" name="time_start"
-                                                   style="width: 268px;display: inline-block;" class="form-control"
-                                                   value="12:00" min="09:00" max="19:00"/>
-                                            <label>至</label>
-                                            <input type="date" name="date_end"
-                                                   style="width: 268px;display: inline-block;" class="form-control"
-                                                   min="2015-09-16" max="2015-09-26"/>
-                                            <input type="time" name="time_end"
-                                                   style="width: 268px;display: inline-block;" class="form-control"
-                                                   value="12:00" min="09:00" max="19:00"/>
+                                            <label style="display: block">上门时间</label>
+                                            <input id="demo_datetime" style="width: 270px;display: inline-block;" class="form-control" type="text" value="{{ $time }}">
+                                            <label style="display: inline-block;margin-top: 0">至</label>
+                                            <input id="demo_datetime" style="width: 270px;display: inline-block;" class="form-control" type="text" value="{{ $time }}">
                                         </div>
                                         <div id="flip" style="height: 80px;">
                                             <span id="icon" style="font-size: 50px;font-weight: bold">+</span><span
@@ -124,16 +109,19 @@
                                         <div id="panel">
                                             <div class="form-group">
                                                 <label>姓名</label>
-                                                <input name="name" class="form-control" value="" disabled>
+                                                <input name="name" class="form-control" value="{{ $user['name'] }}"
+                                                       disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label>电话</label>
-                                                <input name="tel" class="form-control" value="" disabled>
+                                                <input name="tel" class="form-control" value="{{ $user['tel'] }}"
+                                                       disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label style="display: block;">地址</label>
                                                 <textarea name="address" class="form-control" rows="3"
-                                                          style="margin-top: 10px" disabled></textarea>
+                                                          style="margin-top: 10px"
+                                                          disabled>{{ $user['province'] . '-' . $user['city'] . $user['address'] }}</textarea>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-default"
@@ -151,9 +139,6 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
-            <div id="flip">点我滑下面板</div>
-            <div id="panel">Hello world!</div>
             @include('common.foot')
         </div>
         <!-- /. PAGE INNER  -->
@@ -169,11 +154,31 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 <!-- Metis Menu Js -->
 <script src="/assets/js/jquery.metisMenu.js"></script>
+<script src="/js/jquery-1.js"></script>
+<script src="/js/mobiscroll.js"></script>
+<link href="/css/mobiscroll.css" rel="stylesheet" type="text/css">
 <!-- DATA TABLE SCRIPTS -->
 <script src="/assets/js/dataTables/jquery.dataTables.js"></script>
 <script src="/assets/js/dataTables/dataTables.bootstrap.js"></script>
 <script>
     $(document).ready(function () {
+
+        var theme = "ios";
+        var mode = "scroller";
+        var display = "bottom";
+        var lang = "zh";
+
+        // Date & Time demo initialization
+        $('#demo_datetime').mobiscroll().datetime({
+            theme: theme,
+            mode: mode,
+            display: display,
+            lang: lang,
+            dateFormat: "yyyy-mm-dd",
+            minDate: new Date(2000, 3, 10, 9, 22),
+            maxDate: new Date(2030, 7, 30, 15, 44),
+            stepMinute: 1
+        });
         $('#dataTables-example').dataTable();
         $("#flip").click(function () {
             $("#panel").slideToggle("slow");
