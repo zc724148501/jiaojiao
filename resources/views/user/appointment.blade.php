@@ -87,20 +87,21 @@
                                             <label style="font-size: 16px">（保修期已过的家电不参与预约维修）</label>
                                             <select name="household" class="form-control">
                                                 @foreach($household as $key => $value)
-                                                    <option value="">{{ $value }}</option>
+                                                    <option value="{{ $value }}">{{ $value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <label>故障类型</label>
                                         <select name="household" class="form-control">
                                             <option value="" selected="selected">岁</option>
-                                            <option value="">岁</option>
                                         </select>
                                         <div class="form-group">
                                             <label style="display: block">上门时间</label>
-                                            <input id="demo_datetime" style="width: 270px;display: inline-block;" class="form-control" type="text" value="{{ $time }}">
+                                            <input id="demo_datetime" style="width: 270px;display: inline-block;"
+                                                   class="form-control" type="text" value="{{ $time }}">
                                             <label style="display: inline-block;margin-top: 0">至</label>
-                                            <input id="demo_datetime" style="width: 270px;display: inline-block;" class="form-control" type="text" value="{{ $time }}">
+                                            <input id="demo_datetime" style="width: 270px;display: inline-block;"
+                                                   class="form-control" type="text" value="{{ $time }}">
                                         </div>
                                         <div id="flip" style="height: 80px;">
                                             <span id="icon" style="font-size: 50px;font-weight: bold">+</span><span
