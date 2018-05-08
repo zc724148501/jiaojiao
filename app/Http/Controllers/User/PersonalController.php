@@ -24,7 +24,7 @@ class PersonalController extends BaseController
             $type = Type::where('number', '=', $value['type'])->first();
             $model = Models::where('number', '=', $value['model'])->first();
             $data[] = $brand['brand'] . '-' . $type['type'] . '-' . $model['model'];
-            $deadline[] = (time() - $value['deadline']) ? 1 : 0;
+            $deadline[] = (time() - $value['deadline'] > 0) ? 1 : 0;
         }
         return view('user/personal', [
             'username' => $username,

@@ -21,8 +21,8 @@
     <style type="text/css">
         label {
             font-size: 22px;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
 
         #panel {
@@ -37,7 +37,17 @@
         var lang = "zh";
 
         // Date & Time demo initialization
-        $('#demo_datetime').mobiscroll().datetime({
+        $('#demo_datetime1').mobiscroll().datetime({
+            theme: theme,
+            mode: mode,
+            display: display,
+            lang: lang,
+            dateFormat: "yyyy-mm-dd",
+            minDate: new Date(2000, 3, 10, 9, 22),
+            maxDate: new Date(2030, 7, 30, 15, 44),
+            stepMinute: 1
+        });
+        $('#demo_datetime2').mobiscroll().datetime({
             theme: theme,
             mode: mode,
             display: display,
@@ -87,20 +97,24 @@
                                             <label style="font-size: 16px">（保修期已过的家电不参与预约维修）</label>
                                             <select name="household" class="form-control">
                                                 @foreach($household as $key => $value)
-                                                    <option value="{{ $value }}">{{ $value }}</option>
+                                                    <option id="{{ $value['id'] }}" class="change"
+                                                            value="{{ $value['id'] }}">{{ $value['household'] }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <label>故障类型</label>
-                                        <select name="household" class="form-control">
-                                            <option value="" selected="selected">岁</option>
+                                        <select name="fault" class="form-control">
+                                            <option id="type" disabled>======按家电分类======</option>
+                                            <option id="model" disabled>======按型号分类======</option>
+                                            <option disabled>========其他========</option>
+                                            <option id="other" value="other">其他</option>
                                         </select>
                                         <div class="form-group">
                                             <label style="display: block">上门时间</label>
-                                            <input id="demo_datetime" style="width: 270px;display: inline-block;"
+                                            <input id="demo_datetime1" style="width: 270px;display: inline-block;"
                                                    class="form-control" type="text" value="{{ $time }}">
                                             <label style="display: inline-block;margin-top: 0">至</label>
-                                            <input id="demo_datetime" style="width: 270px;display: inline-block;"
+                                            <input id="demo_datetime2" style="width: 270px;display: inline-block;"
                                                    class="form-control" type="text" value="{{ $time }}">
                                         </div>
                                         <div id="flip" style="height: 80px;">
@@ -170,7 +184,7 @@
         var lang = "zh";
 
         // Date & Time demo initialization
-        $('#demo_datetime').mobiscroll().datetime({
+        $('#demo_datetime1').mobiscroll().datetime({
             theme: theme,
             mode: mode,
             display: display,
@@ -188,6 +202,48 @@
             } else {
                 $("#icon").html('+');
             }
+        });
+
+        // Date & Time demo initialization
+        $('#demo_datetime2').mobiscroll().datetime({
+            theme: theme,
+            mode: mode,
+            display: display,
+            lang: lang,
+            dateFormat: "yyyy-mm-dd",
+            minDate: new Date(2000, 3, 10, 9, 22),
+            maxDate: new Date(2030, 7, 30, 15, 44),
+            stepMinute: 1
+        });
+        $('#dataTables-example').dataTable();
+        $("#flip").click(function () {
+            $("#panel").slideToggle("slow");
+            if ($("#icon").text() == '+') {
+                $("#icon").html('-');
+            } else {
+                $("#icon").html('+');
+            }
+        });
+        $(".change").click(function () {
+            var id = $(this).attr('id');
+            $.post("{{ url('user/select') }}", {
+                    id: id,
+                },
+                function (data) {
+                    var typeLen = data['type'].length;
+                    var modelLen = data['model'].length;
+                    var type = $("#type");
+                    var model = $("#model");
+                    $("option").remove(".remove");
+                    for (var i = 0; i < typeLen; i++) {
+                        var option = $("<option class='remove' value='" + data['type'][i]['id'] + "'>" + data['type'][i]['fault'] + "</option>");
+                        type.after(option);
+                    }
+                    for (var i = 0; i < modelLen; i++) {
+                        var option = $("<option class='remove' value='" + data['model'][i]['id'] + "'>" + data['model'][i]['fault'] + "</option>");
+                        model.after(option);
+                    }
+                }, "json");
         });
     });
 </script>

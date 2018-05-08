@@ -25,6 +25,8 @@ Route::group(['middleware' => 'login'],function (){
     Route::group(['prefix' => 'user','namespace' => 'User'],function (){
         Route::get('homepage','HomepageController@index');
         Route::get('appointment','AppointmentController@index');
+        Route::post('select','AppointmentController@select');
+        Route::post('submit','AppointmentController@submit');
         Route::get('query','QueryController@index');
         Route::get('personal','PersonalController@index');
         Route::get('setting','SettingController@index');
