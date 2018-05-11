@@ -94,7 +94,7 @@
                                     <form role="form" action="{{ url('user/setInfo') }}" method="post">
                                         <div class="form-group">
                                             <label>保修家电</label>
-                                            <label style="font-size: 16px">（保修期已过的家电不参与预约维修）</label>
+                                            <label style="font-size: 16px">（保修期已过的家电需要额外支付费用）</label>
                                             <select name="household" class="form-control">
                                                 @foreach($household as $key => $value)
                                                     <option id="{{ $value['id'] }}" class="change"

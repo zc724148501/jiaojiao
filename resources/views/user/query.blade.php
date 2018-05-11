@@ -12,8 +12,6 @@
     <link href="/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
     <!-- Custom Styles-->
     <link href="/assets/css/custom-styles.css" rel="stylesheet"/>
-    <!-- Google Fonts-->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 </head>
 <body>
 <div id="wrapper">
@@ -26,62 +24,29 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Responsive Table Example
+                    查询订单
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>S No.</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>User Name</th>
-                                <th>Email ID.</th>
+                                <th>家电ID</th>
+                                <th>品牌</th>
+                                <th>类型</th>
+                                <th>型号</th>
+                                <th>编号</th>
+                                <th>所属用户ID</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Kimsila</td>
-                                <td>Marriye</td>
-                                <td>Kim1425</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Rossye</td>
-                                <td>Nermal</td>
-                                <td>Rossy1245</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Richard</td>
-                                <td>Orieal</td>
-                                <td>Rich5685</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Jacob</td>
-                                <td>Hielsar</td>
-                                <td>Jac4587</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Wrapel</td>
-                                <td>Dere</td>
-                                <td>Wrap4585</td>
-                                <td>name@site.com</td>
+                                <th>3</th>
+                                <th>小天鹅</th>
+                                <th>冰箱</th>
+                                <th>BV-300</th>
+                                <th>4032</th>
+                                <th>3</th>
                             </tr>
 
                             </tbody>
