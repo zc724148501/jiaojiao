@@ -35,21 +35,21 @@ class UserController extends BaseController
         $captcha = $request->get('code');
         if ($username == '') {
             $msg = '用户名不能为空';
-            return redirect('user/login')->with(['msg' => $msg]);
+            return view('user/login')->with(['msg' => $msg]);
         } elseif ($password == '') {
             $msg = '密码不能为空';
-            return redirect('user/login')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/login')->with(['msg' => $msg, 'username' => $username]);
         } elseif ($captcha == '') {
             $msg = '验证码不能为空';
-            return redirect('user/login')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/login')->with(['msg' => $msg, 'username' => $username]);
         } elseif ($captcha != $request->session()->get('captcha')) {
             $msg = '验证码不正确';
-            return redirect('user/login')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/login')->with(['msg' => $msg, 'username' => $username]);
         } else {
             $user = User::where('username', '=', $username)->first();
             if ($user->password != strtoupper(substr(md5($password), 8, 16))) {
                 $msg = '密码不正确';
-                return redirect('user/login')->with(['msg' => $msg, 'username' => $username]);
+                return view('user/login')->with(['msg' => $msg, 'username' => $username]);
             } else {
                 $remember = $request->get('remember');
                 if (isset($remember)) {
@@ -71,31 +71,31 @@ class UserController extends BaseController
         $captcha = $request->get('code');
         if ($username == '') {
             $msg = '用户名不能为空';
-            return redirect('user/register')->with(['msg' => $msg]);
+            return view('user/register')->with(['msg' => $msg]);
         } elseif (strlen($username) > 20 || strlen($username) < 4) {
             $msg = '用户名必须是4-20个字符之间';
-            return redirect('user/register')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/register')->with(['msg' => $msg, 'username' => $username]);
         } elseif ($password == '') {
             $msg = '密码不能为空';
-            return redirect('user/register')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/register')->with(['msg' => $msg, 'username' => $username]);
         } elseif (strlen($password) > 20 || strlen($password) < 6) {
             $msg = '密码必须是4-20个字符之间';
-            return redirect('user/register')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/register')->with(['msg' => $msg, 'username' => $username]);
         } elseif ($re_password == '') {
             $msg = '请再次输入密码';
-            return redirect('user/register')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/register')->with(['msg' => $msg, 'username' => $username]);
         } elseif ($password != $re_password) {
             $msg = '两次密码输入不一致';
-            return redirect('user/register')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/register')->with(['msg' => $msg, 'username' => $username]);
         } elseif ($captcha == '') {
             $msg = '验证码不能为空';
-            return redirect('user/register')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/register')->with(['msg' => $msg, 'username' => $username]);
         } elseif ($captcha != $request->session()->get('captcha')) {
             $msg = '验证码不正确';
-            return redirect('user/register')->with(['msg' => $msg, 'username' => $username]);
+            return view('user/register')->with(['msg' => $msg, 'username' => $username]);
         } elseif (!empty(User::where('username', '=', $username)->first())) {
             $msg = '用户名已存在，请重新输入';
-            return redirect('user/register')->with(['msg' => $msg]);
+            return view('user/register')->with(['msg' => $msg]);
         } else {
             User::create(['username' => $username, 'password' => strtoupper(substr(md5($password), 8, 16)), 'create_time' => time()]);
             return view('location');

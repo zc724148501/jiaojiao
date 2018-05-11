@@ -21,12 +21,12 @@ class LoginMiddleware
     {
         if (!empty($request->cookie('login')) && empty($request->session()->get('username'))){
             $request->session()->put('username',$request->cookie('login'));
+            if ($request->path() == 'user/login' || $request->path() == 'user/register' || $request->path() == '/'){
+                return redirect('user/homepage');
+            }
         }
         elseif (empty($request->session()->get('username')) && $request->path() != 'user/login'){
             return redirect('user/login');
-        }
-        if ($request->path() == 'user/login' || $request->path() == 'user/register' || $request->path() == '/'){
-            return redirect('user/homepage');
         }
         return $next($request);
     }

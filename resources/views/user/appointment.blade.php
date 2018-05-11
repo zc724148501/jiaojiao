@@ -110,11 +110,16 @@
                                             <option id="other" value="other">其他</option>
                                         </select>
                                         <div class="form-group">
+                                            <label style="display: block;">详细说明</label>
+                                            <textarea name="describe" class="form-control" rows="3"
+                                                      style="margin-top: 10px"></textarea>
+                                        </div>
+                                               <div class="form-group">
                                             <label style="display: block">上门时间</label>
-                                            <input id="demo_datetime1" style="width: 270px;display: inline-block;"
+                                            <input id="demo_datetime1" style="width: 542px;display: inline-block;"
                                                    class="form-control" type="text" value="{{ $time }}">
                                             <label style="display: inline-block;margin-top: 0">至</label>
-                                            <input id="demo_datetime2" style="width: 270px;display: inline-block;"
+                                            <input id="demo_datetime2" style="width: 542px;display: inline-block;"
                                                    class="form-control" type="text" value="{{ $time }}">
                                         </div>
                                         <div id="flip" style="height: 80px;">
