@@ -21,7 +21,7 @@
 <div id="wrapper">
 @include('common.head')
 <!--/. NAV TOP  -->
-@include('common.userside')
+@include('common.workerside')
 <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div id="page-inner">
@@ -68,28 +68,13 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h4>您购买的产品</h4>
-                                    <form role="form">
-                                        <div id="box">
-                                            @foreach($household as $key => $value)
-                                                <div class="form-group
-                                                        @if($deadline[$key])
-                                                            has-error
-                                                        @else
-                                                            has-success
-                                                        @endif
-                                                        ">
-                                                    <div id="inputError" class="form-control"
-                                                         style="margin-top: 20px">{{ $value }}</div>
-                                                    <label class="control-label" style="margin-top: 10px">
-                                                        @if($deadline[$key])
-                                                            商品已经超过保修期
-                                                        @endif
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </form>
+                                    <h4>您擅长维修的产品</h4>
+                                    <div id="box">
+                                        <label style="display: block;">品牌</label>
+                                        <div class="form-control">{{ $brand or '未设置' }}</div>
+                                        <label style="display: block;">类型</label>
+                                        <div class="form-control">{{ $type or '未设置' }}</div>
+                                    </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

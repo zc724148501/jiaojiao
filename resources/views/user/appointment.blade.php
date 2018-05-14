@@ -93,8 +93,23 @@
                                     </div>
                                     <form role="form" action="{{ url('user/setInfo') }}" method="post">
                                         <div class="form-group">
+                                            <div class="form-group has-error">
+                                                <label>家电编号</label>
+                                                <input type="text" class="form-control" id="inputSuccess">
+                                                <label class="control-label" for="inputSuccess"></label>
+                                                <label class="control-label" for="inputSuccess">家电编号已存在</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>保修期</label>
+                                                <input type="date" class="form-control" style="line-height: 17px">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-default"
+                                                        style="width: 100px;margin-top: 30px">提交
+                                                </button>
+                                            </div>
                                             <label>保修家电</label>
-                                            <label style="font-size: 16px">（保修期已过的家电需要额外支付费用）</label>
+                                            <label style="font-size: 16px">（保修期已过的家电不能免费保修）</label>
                                             <select name="household" class="form-control">
                                                 @foreach($household as $key => $value)
                                                     <option id="{{ $value['id'] }}" class="change"
@@ -114,7 +129,7 @@
                                             <textarea name="describe" class="form-control" rows="3"
                                                       style="margin-top: 10px"></textarea>
                                         </div>
-                                               <div class="form-group">
+                                        <div class="form-group">
                                             <label style="display: block">上门时间</label>
                                             <input id="demo_datetime1" style="width: 542px;display: inline-block;"
                                                    class="form-control" type="text" value="{{ $time }}">

@@ -17,7 +17,7 @@
 <div id="wrapper">
 @include('common.head')
 <!--/. NAV TOP  -->
-@include('common.userside')
+@include('common.workerside')
 <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div class="col-md-12 col-sm-12 col-xs-12">

@@ -58,7 +58,8 @@ class UserController extends BaseController
                     $cookie = Cookie::forget('login');
                 }
                 $request->session()->put('username', $username);
-                return response()->view('locationLogin')->withCookie($cookie);
+                $request->session()->put('flag', $user->flag);
+                return response()->view('locationLogin',['flag' => $user->flag])->withCookie($cookie);
             }
         }
     }

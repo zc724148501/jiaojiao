@@ -22,7 +22,14 @@
     function refer() {
         t--;
         if (t == 0) {
-            location.href = "{{ url('user/homepage') }}"; //#设定跳转的链接地址
+            var flag = '{{ $flag }}';
+            if (flag === '3') {
+                location.href = "{{ url('user/homepage') }}"; //#设定跳转的链接地址
+            } else if (flag === '2') {
+                location.href = "{{ url('worker/homepage') }}"; //#设定跳转的链接地址
+            } else {
+                location.href = "{{ url('admin/homepage') }}"; //#设定跳转的链接地址
+            }
             return;
         }
         document.getElementById('show').innerHTML = "" + t; // 显示倒计时
