@@ -47,7 +47,11 @@ class UserController extends BaseController
             return view('user/login')->with(['msg' => $msg, 'username' => $username]);
         } else {
             $user = User::where('username', '=', $username)->first();
-            if ($user->password != strtoupper(substr(md5($password), 8, 16))) {
+            if (empty($user)){
+                $msg = '用户名不存在';
+                return view('user/login')->with(['msg' => $msg]);
+            }
+            elseif ($user->password != strtoupper(substr(md5($password), 8, 16))) {
                 $msg = '密码不正确';
                 return view('user/login')->with(['msg' => $msg, 'username' => $username]);
             } else {

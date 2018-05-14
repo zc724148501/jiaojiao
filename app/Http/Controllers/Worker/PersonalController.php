@@ -29,8 +29,8 @@ class PersonalController extends BaseController
             'province' => $user->province,
             'city' => $user->city,
             'address' => $user->address,
-            'brand' => $brand->brand,
-            'type' => $type->type,
+            'brand' => !empty($brand->brand) ? $brand->brand : null,
+            'type' => !empty($type->type) ? $type->type : null,
             'active' => 4
         ]);
     }

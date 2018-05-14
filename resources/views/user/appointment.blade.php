@@ -93,24 +93,42 @@
                                     </div>
                                     <form role="form" action="{{ url('user/setInfo') }}" method="post">
                                         <div class="form-group">
-                                            <div class="form-group has-error">
-                                                <label>家电编号</label>
-                                                <input type="text" class="form-control" id="inputSuccess">
-                                                <label class="control-label" for="inputSuccess"></label>
-                                                <label class="control-label" for="inputSuccess">家电编号已存在</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>保修期</label>
-                                                <input type="date" class="form-control" style="line-height: 17px">
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-default"
-                                                        style="width: 100px;margin-top: 30px">提交
-                                                </button>
-                                            </div>
+                                            {{--<div class="form-group has-error">--}}
+                                                {{--<label>家电编号</label>--}}
+                                                {{--<input type="text" class="form-control" id="inputSuccess">--}}
+                                                {{--<label class="control-label" for="inputSuccess"></label>--}}
+                                                {{--<label class="control-label" for="inputSuccess">家电编号已存在</label>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<label>保修期</label>--}}
+                                                {{--<input type="date" class="form-control" style="line-height: 17px">--}}
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<button type="submit" class="btn btn-default"--}}
+                                                        {{--style="width: 100px;margin-top: 30px">提交--}}
+                                                {{--</button>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<label>选择要添加的信息种类</label>--}}
+                                                {{--<select name="fault" class="form-control">--}}
+                                                    {{--<option id="type">家电品牌</option>--}}
+                                                    {{--<option id="model">家电类型</option>--}}
+                                                    {{--<option>家电型号</option>--}}
+                                                {{--</select>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<label>保修期</label>--}}
+                                                {{--<input type="date" class="form-control" style="line-height: 17px">--}}
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<button type="submit" class="btn btn-default"--}}
+                                                        {{--style="width: 100px;margin-top: 30px">提交--}}
+                                                {{--</button>--}}
+                                            {{--</div>--}}
                                             <label>保修家电</label>
                                             <label style="font-size: 16px">（保修期已过的家电不能免费保修）</label>
                                             <select name="household" class="form-control">
+                                                <option value="0" selected>未选择</option>
                                                 @foreach($household as $key => $value)
                                                     <option id="{{ $value['id'] }}" class="change"
                                                             value="{{ $value['id'] }}">{{ $value['household'] }}</option>
@@ -119,8 +137,8 @@
                                         </div>
                                         <label>故障类型</label>
                                         <select name="fault" class="form-control">
-                                            <option id="type" disabled>======按家电分类======</option>
-                                            <option id="model" disabled>======按型号分类======</option>
+                                            <option id="type" disabled>======按家电类型分类======</option>
+                                            <option id="model" disabled>======按家电型号分类======</option>
                                             <option disabled>========其他========</option>
                                             <option id="other" value="other">其他</option>
                                         </select>
