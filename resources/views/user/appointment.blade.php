@@ -94,57 +94,61 @@
                                     <form role="form" action="{{ url('user/setInfo') }}" method="post">
                                         <div class="form-group">
                                             {{--<div class="form-group has-error">--}}
-                                                {{--<label>家电编号</label>--}}
-                                                {{--<input type="text" class="form-control" id="inputSuccess">--}}
-                                                {{--<label class="control-label" for="inputSuccess"></label>--}}
-                                                {{--<label class="control-label" for="inputSuccess">家电编号已存在</label>--}}
+                                            {{--<label>家电编号</label>--}}
+                                            {{--<input type="text" class="form-control" id="inputSuccess">--}}
+                                            {{--<label class="control-label" for="inputSuccess"></label>--}}
+                                            {{--<label class="control-label" for="inputSuccess">家电编号已存在</label>--}}
                                             {{--</div>--}}
                                             {{--<div class="form-group">--}}
-                                                {{--<label>保修期</label>--}}
-                                                {{--<input type="date" class="form-control" style="line-height: 17px">--}}
+                                            {{--<label>保修期</label>--}}
+                                            {{--<input type="date" class="form-control" style="line-height: 17px">--}}
                                             {{--</div>--}}
                                             {{--<div class="form-group">--}}
-                                                {{--<button type="submit" class="btn btn-default"--}}
-                                                        {{--style="width: 100px;margin-top: 30px">提交--}}
-                                                {{--</button>--}}
+                                            {{--<button type="submit" class="btn btn-default"--}}
+                                            {{--style="width: 100px;margin-top: 30px">提交--}}
+                                            {{--</button>--}}
                                             {{--</div>--}}
                                             {{--<div class="form-group">--}}
-                                                {{--<label>选择要添加的信息种类</label>--}}
-                                                {{--<select name="fault" class="form-control">--}}
-                                                    {{--<option id="type">家电品牌</option>--}}
-                                                    {{--<option id="model">家电类型</option>--}}
-                                                    {{--<option>家电型号</option>--}}
-                                                {{--</select>--}}
+                                            {{--<label>选择要添加的信息种类</label>--}}
+                                            {{--<select name="fault" class="form-control">--}}
+                                            {{--<option id="type">家电品牌</option>--}}
+                                            {{--<option id="model">家电类型</option>--}}
+                                            {{--<option>家电型号</option>--}}
+                                            {{--</select>--}}
                                             {{--</div>--}}
                                             {{--<div class="form-group">--}}
-                                                {{--<label>保修期</label>--}}
-                                                {{--<input type="date" class="form-control" style="line-height: 17px">--}}
+                                            {{--<label>保修期</label>--}}
+                                            {{--<input type="date" class="form-control" style="line-height: 17px">--}}
                                             {{--</div>--}}
                                             {{--<div class="form-group">--}}
-                                                {{--<button type="submit" class="btn btn-default"--}}
-                                                        {{--style="width: 100px;margin-top: 30px">提交--}}
-                                                {{--</button>--}}
+                                            {{--<button type="submit" class="btn btn-default"--}}
+                                            {{--style="width: 100px;margin-top: 30px">提交--}}
+                                            {{--</button>--}}
                                             {{--</div>--}}
                                             <label>保修家电</label>
                                             <label style="font-size: 16px">（保修期已过的家电不能免费保修）</label>
-                                            <select name="household" class="form-control">
+                                            <select id="household" class="form-control">
                                                 <option value="0" selected>未选择</option>
                                                 @foreach($household as $key => $value)
                                                     <option id="{{ $value['id'] }}" class="change"
                                                             value="{{ $value['id'] }}">{{ $value['household'] }}</option>
                                                 @endforeach
+                                                @foreach($over as $key => $value)
+                                                    <option id="{{ $value['id'] }}" class="change"
+                                                            value="{{ $value['id'] }}">{{ $value['household'] . '（超出保修时间）' }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <label>故障类型</label>
-                                        <select name="fault" class="form-control">
+                                        <select id="fault" class="form-control">
                                             <option id="type" disabled>======按家电类型分类======</option>
                                             <option id="model" disabled>======按家电型号分类======</option>
                                             <option disabled>========其他========</option>
-                                            <option id="other" value="other">其他</option>
+                                            <option id="other" value="0">其他</option>
                                         </select>
                                         <div class="form-group">
                                             <label style="display: block;">详细说明</label>
-                                            <textarea name="describe" class="form-control" rows="3"
+                                            <textarea id="describe" class="form-control" rows="3"
                                                       style="margin-top: 10px"></textarea>
                                         </div>
                                         <div class="form-group">
@@ -162,22 +166,22 @@
                                         <div id="panel">
                                             <div class="form-group">
                                                 <label>姓名</label>
-                                                <input name="name" class="form-control" value="{{ $user['name'] }}"
+                                                <input id="name" class="form-control" value="{{ $user['name'] }}"
                                                        disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label>电话</label>
-                                                <input name="tel" class="form-control" value="{{ $user['tel'] }}"
+                                                <input id="tel" class="form-control" value="{{ $user['tel'] }}"
                                                        disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label style="display: block;">地址</label>
-                                                <textarea name="address" class="form-control" rows="3"
+                                                <textarea id="address" class="form-control" rows="3"
                                                           style="margin-top: 10px"
                                                           disabled>{{ $user['province'] . '-' . $user['city'] . $user['address'] }}</textarea>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-default"
+                                        <button id="submit" type="button" class="btn btn-default"
                                                 style="width: 100px;margin-top: 30px">提交
                                         </button>
                                     </form>
@@ -253,15 +257,6 @@
             maxDate: new Date(2030, 7, 30, 15, 44),
             stepMinute: 1
         });
-        $('#dataTables-example').dataTable();
-        $("#flip").click(function () {
-            $("#panel").slideToggle("slow");
-            if ($("#icon").text() == '+') {
-                $("#icon").html('-');
-            } else {
-                $("#icon").html('+');
-            }
-        });
         $(".change").click(function () {
             var id = $(this).attr('id');
             $.post("{{ url('user/select') }}", {
@@ -283,6 +278,43 @@
                     }
                 }, "json");
         });
+        $("#submit").click(function () {
+            var name = $("#name").val();
+            var tel = $("#tel").val();
+            var address = $("#address").val();
+            var household = $("#household").val();
+            var fault = $("#fault").val();
+            var describe = $("#describe").val();
+            var time1 = new Date($("#demo_datetime1").val());
+            var time2 = new Date($("#demo_datetime2").val());
+            if (name == '' || tel == '' || address == '-') {
+                alert('请完善个人信息');
+            }
+            else if (household == 0) {
+                alert('请选择要保修的家电');
+            }
+            else if (fault == 0 && describe == '') {
+                alert('请填写详细说明');
+            }
+            else {
+                alert(time1.valueOf()+28800000);
+                alert(time2.valueOf()+28800000);
+            }
+            {{--$.post("{{ url('user/select') }}", {--}}
+            {{--id: id,--}}
+            {{--},--}}
+            {{--function (data) {--}}
+            {{--}, "json");--}}
+        });
+        function timestampToTime(timestamp) {
+            var date = new Date(timestamp);
+            Y = date.getFullYear() + '-';
+            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            D = date.getDate() + ' ';
+            h = date.getHours() + ':';
+            m = date.getMinutes() + ':';
+            return Y+M+D+h+m;
+        }
     });
 </script>
 <!-- Custom Js -->

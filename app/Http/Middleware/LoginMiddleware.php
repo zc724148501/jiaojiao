@@ -26,7 +26,7 @@ class LoginMiddleware
         elseif (empty($request->session()->get('username')) && $request->path() != 'user/login'){
             return redirect('user/login');
         }
-        if ($request->path() == 'user/login' || $request->path() == 'user/register' || $request->path() == '/'){
+        if (!empty($request->session()->get('username')) && ($request->path() == 'user/login' || $request->path() == 'user/register' || $request->path() == '/')){
             $user = User::where('username','=',$request->session()->get('username'))->first();
             switch ($user->flag)
             {
