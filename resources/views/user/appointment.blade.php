@@ -178,7 +178,7 @@
                                                 <label style="display: block;">地址</label>
                                                 <textarea id="address" class="form-control" rows="3"
                                                           style="margin-top: 10px"
-                                                          disabled>{{ $user['province'] . '-' . $user['city'] . $user['address'] }}</textarea>
+                                                          disabled>{{ $user['province'] . '-' . $user['city'] . '-' . $user['address'] }}</textarea>
                                             </div>
                                         </div>
                                         <button id="submit" type="button" class="btn btn-default"
@@ -285,8 +285,8 @@
             var household = $("#household").val();
             var fault = $("#fault").val();
             var describe = $("#describe").val();
-            var time1 = new Date($("#demo_datetime1").val());
-            var time2 = new Date($("#demo_datetime2").val());
+            var startTime = new Date($("#demo_datetime1").val());
+            var endTime = new Date($("#demo_datetime2").val());
             if (name == '' || tel == '' || address == '-') {
                 alert('请完善个人信息');
             }
@@ -297,23 +297,32 @@
                 alert('请填写详细说明');
             }
             else {
-                alert(time1.valueOf()+28800000);
-                alert(time2.valueOf()+28800000);
+                $.post("{{ url('user/submit') }}", {
+                        household: household,
+                        fault: fault,
+                        describe: describe,
+                        startTime: startTime.valueOf(),
+                        endTime: endTime.valueOf()
+                    },
+                    function (data) {
+                        if (data) {
+                            alert('已提交预约订单');
+                        }
+                        else {
+                            alert('未找到合适的维修人员');
+                        }
+                    }, "json");
             }
-            {{--$.post("{{ url('user/select') }}", {--}}
-            {{--id: id,--}}
-            {{--},--}}
-            {{--function (data) {--}}
-            {{--}, "json");--}}
         });
+
         function timestampToTime(timestamp) {
             var date = new Date(timestamp);
             Y = date.getFullYear() + '-';
-            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
             D = date.getDate() + ' ';
             h = date.getHours() + ':';
             m = date.getMinutes() + ':';
-            return Y+M+D+h+m;
+            return Y + M + D + h + m;
         }
     });
 </script>

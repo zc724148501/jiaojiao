@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Model\Fault;
 use App\Model\Household;
 use App\Model\Brand;
+use App\Model\Order;
 use App\Model\Type;
 use App\Model\Models;
 use App\Model\User;
@@ -26,8 +27,7 @@ class AppointmentController extends BaseController
                 $type = Type::where('number', '=', $value['type'])->first();
                 $model = Models::where('number', '=', $value['model'])->first();
                 $data[] = array('id' => $value['id'], 'household' => $brand['brand'] . '-' . $type['type'] . '-' . $model['model']);
-            }
-            else {
+            } else {
                 $brand = Brand::where('number', '=', $value['brand'])->first();
                 $type = Type::where('number', '=', $value['type'])->first();
                 $model = Models::where('number', '=', $value['model'])->first();
@@ -40,13 +40,13 @@ class AppointmentController extends BaseController
             $complete = 0;
         }
         return view('user/appointment', [
-            'username'  => $username,
-            'user'      => $user,
-            'active'    => 2,
-            'complete'  => $complete,
+            'username' => $username,
+            'user' => $user,
+            'active' => 2,
+            'complete' => $complete,
             'household' => $data,
-            'over'      => $over,
-            'time'      => $time,
+            'over' => $over,
+            'time' => $time,
         ]);
     }
 
@@ -61,6 +61,36 @@ class AppointmentController extends BaseController
 
     public function submit(Request $request)
     {
+        if ($request->isMethod('post')) {
+            $householdId = $request->get('household');
+            $fault = $request->get('fault');
+            $describe = $request->get('describe');
+            $startTime = $request->get('startTime');
+            $endTime = $request->get('endTime');
+            $username = $request->session()->get('username');
+            $household = Household::where('id', '=', $householdId)->first();
+            $user = User::where('username', '=', $username)->first();
+            $worker = User::join('worker', function ($join) {
+                $join->on('users.id', '=', 'worker.userId');
+            })->where(['province' => $user['province'], 'city' => $user['city'], 'flag' => 2, 'brandNum' => $household->brand, 'typeNum' => $household->type])->first();
 
+            if (empty($worker)) {
+                return 0;
+            } else {
+                $order = new Order();
+
+                $order->create([
+                    'household' => $household,
+                    'fault' => $fault,
+                    'describe' => $describe,
+                    'startTime' => substr($startTime, 0, 10),
+                    'endTime' => substr($endTime, 0, 10),
+                    'userId' => $user->id,
+                    'workerId' => $worker->id,
+                ]);
+                return 1;
+            }
+        }
+        return 0;
     }
 }
