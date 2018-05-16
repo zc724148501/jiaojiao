@@ -86,7 +86,7 @@ class AppointmentController extends BaseController
                     'startTime' => substr($startTime, 0, 10),
                     'endTime' => substr($endTime, 0, 10),
                     'userId' => $user->id,
-                    'workerId' => $worker->id,
+                    'workerId' => $worker->userId,
                 ]);
                 return 1;
             }

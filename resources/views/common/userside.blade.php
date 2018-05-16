@@ -9,7 +9,7 @@
                 <a class="@if($active == 2) active-menu @endif" href="{{ url('user/appointment') }}"><i class="fa fa-desktop"></i>预约维修</a>
             </li>
             <li>
-                <a class="@if($active == 3) active-menu @endif" href="{{ url('user/query') }}"><i class="fa fa-bar-chart-o"></i>订单查询</a>
+                <a class="@if($active == 3) active-menu @endif" href="{{ url('user/query/1') }}"><i class="fa fa-bar-chart-o"></i>订单查询</a>
             </li>
             <li>
                 <a class="@if($active == 4) active-menu @endif" href="{{ url('user/personal') }}"><i class="fa fa-qrcode"></i>个人中心</a>

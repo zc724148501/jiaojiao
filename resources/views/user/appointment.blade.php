@@ -293,7 +293,7 @@
             else if (household == 0) {
                 alert('请选择要保修的家电');
             }
-            else if (fault == 0 && describe == '') {
+            else if (describe == '') {
                 alert('请填写详细说明');
             }
             else {
@@ -307,6 +307,7 @@
                     function (data) {
                         if (data) {
                             alert('已提交预约订单');
+                            location = "{{ url('user/query') }}";
                         }
                         else {
                             alert('未找到合适的维修人员');

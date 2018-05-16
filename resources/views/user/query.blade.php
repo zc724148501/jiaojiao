@@ -76,9 +76,9 @@
                     {{--</button>--}}
                     {{--</span>--}}
                     {{--</div>--}}
-                    <a>全部订单</a>
-                    <a>未完成</a>
-                    <span>已完成</span>
+                    <a id="1" class="span" style="color: @if($set == '1') black @else dodgerblue @endif;" href="{{ url('user/query/1') }}">全部订单</a>
+                    <a id="2" class="span" style="color: @if($set == '2') black @else dodgerblue @endif;" href="{{ url('user/query/2') }}">未完成</a>
+                    <a id="3" class="span" style="color: @if($set == '3') black @else dodgerblue @endif;" href="{{ url('user/query/3') }}">已完成</a>
                     <br>
                     <br>
                     <div>
@@ -88,24 +88,23 @@
                             <tr>
                                 <th>订单号</th>
                                 <th>故障原因</th>
-                                <th>委托人</th>
-                                <th>家庭住址</th>
+                                <th>故障详情</th>
+                                <th>接单人</th>
                                 <th>联系方式</th>
-                                <th>上门时间</th>
                                 <th>订单状态</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th>5000</th>
-                                <th>电路老化</th>
-                                <th>张三</th>
-                                <th>北京-北京市-朝阳区XXX号</th>
-                                <th>13888888888</th>
-                                <th>2018-05-11 08:00至 2018-05-11 20:00</th>
-                                <th><a style="color: red;">已完成</a></th>
+                            @foreach($order as $key => $value)
+                                <th>{{ $value['id'] }}</th>
+                                <th>{{ $fault }}</th>
+                                <th>{{ $value['describe'] }}</th>
+                                <th>{{ $worker[$key]['name'] }}</th>
+                                <th>{{ $worker[$key]['tel'] }}</th>
+                                <th><a style="color: @if($value['status'] == 0) green @else red @endif;">@if($value['status'] == 0) 未完成 @else 已完成 @endif</a></th>
                             </tr>
                             </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -130,6 +129,11 @@
 <!-- Custom Js -->
 <script src="/assets/js/custom-scripts.js"></script>
 
+<script type="text/javascript">
+    $(".span").click(function () {
+
+    });
+</script>
 
 </body>
 </html>
